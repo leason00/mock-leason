@@ -57,20 +57,20 @@ function create_routes() {
         return;
     }
     
-    // option.action is one of ['get','post','delete','put'...]
+    //  ['get','post','delete','put'...]
     var action = option.action || 'use';
 
     router[action.toLowerCase()](option.url, function (req, res) {
-        // set header
+        // 设置header
         res.set(option.headers);
         
-        // set Content-Type
+        // 设置Content-Type
         option.type && res.type(option.type);
         
-        // set status code
+        // 设置status code
         res.status(option.statusCode);
         
-        // set cookie
+        // 设置cookie
         util.each(option.cookies, function (item, index) {
             var name = item.name;
             var value = item.value;
@@ -79,7 +79,7 @@ function create_routes() {
             res.cookie(name, value, item);
         });
         
-        // do result
+        // 返回result
         if (util.isFunction(option.result)) {
             option.result(req, res);
         }

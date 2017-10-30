@@ -1,4 +1,4 @@
-# mock-leaosn
+# mock-leason
 简单node服务器，在前后端分离开发中，模拟 HTTP 接口数据和静态资源服务器
 
 ，方便前端调试开发。

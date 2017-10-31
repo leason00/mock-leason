@@ -4,7 +4,7 @@
  */
 module.exports = function (mock) {
     return [{
-        url: '/admin2',
+        url: '/admin',
         action: 'GET',
         result:{name: 'json test'}
     }];

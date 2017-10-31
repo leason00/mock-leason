@@ -5,6 +5,9 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var multipart = require('connect-multiparty');
+var multipartMiddleware = multipart();
+
 var index = require('./routes/index');
 
 var app = global.app = express();
@@ -20,8 +23,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(multipart({uploadDir:'../status/upload' }));
+app.use('/', multipartMiddleware, index);
 
-app.use('/', index);
+
+// app.post('/formdata',multipartMiddleware, function (req,res) {
+//     res.send(req.body,req.files,req.files.file.path);
+// //分别返回body，文件属性，以及文件存放地址
+// });
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

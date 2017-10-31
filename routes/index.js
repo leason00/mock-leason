@@ -1,20 +1,32 @@
 var express = require('express');
 var fs = require('fs');
 var path = require('path');
+var app = require('../app');
 var router = express.Router();
+
+
+
 var mock = require('./../bin/routes_config');
 var util = require('../public/util');
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-
+// /* 文件上传 */
+// router.post('/upload', function(req, res, next) {
+//     console.log(req.files);
+//     res.send({
+//         "msg": "上传成功！",
+//         "code": 0,
+//         "data": { "file_url": req.files.file.path}
+//     });
+// });
 
 // 根据参数个数获取配置
 function getOption(arg) {
-    console.log(arg);
     var len = arg.length;
     // 默认配置
     var option = {
@@ -105,9 +117,35 @@ create_routes.json = function (json) {
     return fs.readFileSync(path.resolve('../status',json), 'utf8');
 };
 
-// //返回图片
+//返回静态图片
 create_routes.pic = function (pic) {
     return path.resolve(__dirname, '..') + '/status/pic/' + pic;
+};
+
+//返回上传的图片
+create_routes.pic_upload = function (pic) {
+    return path.resolve(__dirname, '..') + '/status/upload/' + pic;
+};
+
+//文件上传
+create_routes.upload = function (req, res) {
+    var tmp_path = req.files.file.path;
+    // 指定文件上传后的目录 - 示例为"images"目录。
+    var target_path = path.resolve(__dirname, '..') + '/status/upload/' + req.files.file.name;
+    // 移动文件
+    fs.rename(tmp_path, target_path, function(err) {
+        if (err) throw err;
+        // 删除临时文件夹文件,
+        fs.unlink(tmp_path, function() {
+            if (err) throw err;
+            res.send({
+                "msg": "上传成功！",
+                "code": 0,
+                "data": { "file_url": target_path}
+            });
+        });
+    });
+    // return path.resolve(__dirname, '..') + '/status/pic/' + pic;
 };
 
 mock(create_routes);

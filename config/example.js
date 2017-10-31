@@ -26,15 +26,6 @@ module.exports = function (mock) {
         }
     },
         
-    // 返回图片, 文件路径在status下
-    {
-        url: '/pic/:filename',
-        action: 'GET',
-        result: function (req, res) {
-            res.sendfile(mock.pic(req.params.filename));
-        }
-    },
-        
     //返回json文件中的内容示例
     {
         url: '/json',

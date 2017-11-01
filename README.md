@@ -99,6 +99,20 @@ module.exports = function (mock) {
   }
   ```
 
+* 返回mock模拟的数据
+
+  对于有些需要返回不规则的模拟数据，可以按照mockjs语法编写json文件然后在配置文件中调用mock.mock（）方法，如：
+
+  ```
+  //返回mock规则中的内容示例
+  {
+        url: '/admin1',
+        action: 'GET',
+        result:mock.mock('mock/test.json')
+   }
+  ```
+  mock.mock(url,page,limit)有三个参数url为mock路径，page是分页页码，limit每页条数。
+
 
 * 设置headers，cookies等等
 
@@ -117,8 +131,7 @@ module.exports = function (mock) {
                   res.send({"msg": "会话超时，请重新登录","code": 1});
               }else{
                   //POST方法req.body获取请求信息
-                  console.log(req.param('name'));
-                  res.send(mock.json('./json/test.json'));
+                  res.send(mock.mock('mock/test.json', page=req.param('page'), limit=req.param('limit')));
               }
           },
       
@@ -136,6 +149,42 @@ module.exports = function (mock) {
           ]
       }
   ```
+### 模拟数据json
+
+----
+建议放在项目mock目录下，格式规范按照[mock.js官网](https://github.com/nuysoft/Mock/wiki)。
+
+正则表达式格式略作修改RegExp_+正则内容，如5-10位纯数字写作RegExp_\\d{5,10}
+
+完整example：
+
+```
+{
+    "code":0,
+    "msg":"操作成功！",
+    "total":20,	//需要生成多少模拟数据
+    "data": {
+        "id|+1":1,
+        "num": "RegExp_\\d{5,10}",
+        "array|3": [
+            "Mock.js"
+        ],
+        "object|2": {
+            "310000": "上海市",
+            "320000": "江苏省",
+            "330000": "浙江省",
+            "340000": "安徽省"
+        },
+        "cparagraph": "@cparagraph",
+        "name": "leason",
+        "items|1-5": [{
+            "id|+1": 1,
+            "type|1": [0,1],
+            "name": "RegExp_\\d{5,10}"
+        }]
+    }
+}
+```
 
 ### 固定接口
 

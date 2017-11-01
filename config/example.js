@@ -30,7 +30,7 @@ module.exports = function (mock) {
     {
         url: '/json',
         action: 'GET',
-        result:mock.json('./json/test.json')
+        result:mock.json('json/test.json')
     },
         
     // 设置headers，cookies等等

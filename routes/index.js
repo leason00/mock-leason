@@ -105,7 +105,7 @@ create_routes.file = function (file) {
 
 //返回json
 create_routes.json = function (json) {
-    return fs.readFileSync(path.resolve('../status',json), 'utf8');
+    return fs.readFileSync(path.resolve('../status','./' + json), 'utf8');
 };
 
 //返回静态图片

@@ -46,8 +46,7 @@ module.exports = function (mock) {
                 res.send({"msg": "会话超时，请重新登录","code": 1});
             }else{
                 //POST方法req.body获取请求信息
-                console.log(req.param('name'));
-                res.send(mock.json('./json/test.json'));
+                res.send(mock.mock('mock/test.json', page=req.param('page'), limit=req.param('limit')));
             }
         },
     

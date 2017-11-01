@@ -140,8 +140,8 @@ create_routes.upload = function (req, res) {
 };
 
 //mock数据
-create_routes.mock = function (mock_url) {
-    return create_data('../status/' + mock_url)
+create_routes.mock = function (mock_url,page=2,limit=5) {
+    return create_data('../status/' + mock_url,page,limit)
 };
 
 

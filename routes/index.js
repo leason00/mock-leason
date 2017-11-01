@@ -8,22 +8,13 @@ var router = express.Router();
 
 var mock = require('./../bin/routes_config');
 var util = require('../public/util');
+var create_data = require('../public/mock');
 
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
-
-// /* 文件上传 */
-// router.post('/upload', function(req, res, next) {
-//     console.log(req.files);
-//     res.send({
-//         "msg": "上传成功！",
-//         "code": 0,
-//         "data": { "file_url": req.files.file.path}
-//     });
-// });
 
 // 根据参数个数获取配置
 function getOption(arg) {
@@ -145,8 +136,14 @@ create_routes.upload = function (req, res) {
             });
         });
     });
-    // return path.resolve(__dirname, '..') + '/status/pic/' + pic;
+
 };
+
+//mock数据
+create_routes.mock = function (mock_url) {
+    return create_data('../status/' + mock_url)
+};
+
 
 mock(create_routes);
 

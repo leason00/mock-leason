@@ -1,27 +1,32 @@
 {
-  "name": "充电站4",
-  "type": 0,
-  "status": 0,
-  "parking_free": 0,
-  "parking_des":"xxx",
-  "longitude": "116.381272",
-  "latitude": "39.935519",
-  "address": "南昌",
-  "province": "",
-  "city": "",
-  "pic": "",
-  "start_time": "00:00:00",
-  "end_time": "20:00:00",
-  "charge_rule" :[
-    {
-      "charge_rule_id": 1,
-      "begin_hour": 0,
-      "end_hour": 12
-    },
-    {
-      "charge_rule_id": 1,
-      "begin_hour": 12,
-      "end_hour": 24
+    "code":0,
+    "msg":"操作成功！",
+    "total":0,
+    "data": {
+        "name": "充电站4",
+        "type": 0,
+        "status": 0,
+        "parking_free": 0,
+        "parking_des": "xxx",
+        "longitude": "116.381272",
+        "latitude": "39.935519",
+        "address": "南昌",
+        "province": "",
+        "city": "",
+        "pic": "",
+        "start_time": "00:00:00",
+        "end_time": "20:00:00",
+        "charge_rule": [
+            {
+                "charge_rule_id": 1,
+                "begin_hour": 0,
+                "end_hour": 12
+            },
+            {
+                "charge_rule_id": 1,
+                "begin_hour": 12,
+                "end_hour": 24
+            }
+        ]
     }
-  ]
 }

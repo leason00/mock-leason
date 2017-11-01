@@ -7,5 +7,9 @@ module.exports = function (mock) {
         url: '/admin',
         action: 'GET',
         result:{name: 'json test'}
+    },{
+        url: '/admin1',
+        action: 'GET',
+        result:mock.mock('mock/test.json')
     }];
 };
